@@ -3,7 +3,7 @@
 **Overview :**
 - This test library can be used to perform UI testing on the **Standard** mode of Windows Calculator.
 - It supports binary operations using simple arthimetic operators such as Addition, Subtraction, Multiplication and Division.
-- The UI Automations are performed on the Calculator Application using FlaUI.
+- The UI Automations are performed on the Calculator Application using FlaUI. [Know more](https://docs.google.com/document/d/1J81neFboMnpdDmU-KBTnSdujf7LQ52M2/edit?usp=sharing&ouid=111179004960829358587&rtpof=true&sd=true)
 
 **Software Requirements:**
 - Visual Studio 2022
@@ -69,3 +69,5 @@ The test results are stored in a CSV file named **TestDataSource.csv**. This fil
 
 ## References
 [FlaUI GitHub Repo](https://github.com/FlaUI/FlaUI)
+
+[Self Made Notes](https://docs.google.com/document/d/1J81neFboMnpdDmU-KBTnSdujf7LQ52M2/edit?usp=sharing&ouid=111179004960829358587&rtpof=true&sd=true)
