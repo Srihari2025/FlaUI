@@ -24,7 +24,7 @@ Step 2 : Open the solution in Visual Studio. <br>
 Step 3 : Build the solution to restore the required packages. <br>
 Step 4 : Run the test cases using the Test Explorer in Visual Studio. <br>
 Step 5 : The tests will open the Calculator application, perform the operations, and validate the results. <br>
-Step 6 : The test results will be displayed in the [TestDataStore](FlaUIPractice/FlaUiTests/Resources/TestDataStore.csv) file. <br>
+Step 6 : The test results will be displayed in the [TestDataSource](FlaUIPractice/FlaUiTests/Resources/TestDataSource.csv) file. <br>
 Step 7 : You can modify the test cases to add more operations or change the input values as needed. <br>
 
 ## Demonstration
@@ -64,7 +64,7 @@ The test results are stored in a CSV file named **TestDataSource.csv**. This fil
 - [Test Data Source](FlaUIPractice/FlaUiTests/Resources/TestDataSource.csv) is a CSV file that contains the test case data for the Calculator application. It includes the input values, expected results, and operation types for each test case. The CSV file is used as a data source for the test cases, allowing for easy modification and addition of new test cases without changing the code.
 - [ICalculator](FlaUIPractice/FlaUiTests/ICalculator.cs) is the interface for button implementations. Having an interface allows for easy extensibility and maintainability of the code. As there are multiple implementations of the Calculator application in Windows across different versions, having an interface allows for easy switching between different implementations without changing the code that uses it.
 - [InputFormatter](FlaUIPractice/FlaUiTests/InputFormatter.cs) is a utility class that formats the input values for the Calculator application. It ensures that the input values are in the correct format for testing by converting the numerics and symbols to the collection of Buttons that are to be clicked.
-- [StandardModeTests](FlaUIPractice/FlaUiTests/StandardModeTests.cs) contains the test cases for the Standard mode of Windows Calculator.
+- [StandardModeTests](FlaUIPractice/FlaUiTests/StandardModeTesting.cs) contains the test cases for the Standard mode of Windows Calculator.
 - [Windows11Calculator](FlaUIPractice/FlaUiTests/Windows11Calculator.cs) is a class that implements the ICalculator interface having definition for the buttons of Calculator.
 
 ## References
