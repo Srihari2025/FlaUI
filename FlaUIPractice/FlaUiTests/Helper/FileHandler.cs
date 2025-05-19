@@ -14,8 +14,13 @@ namespace FlaUiTests.Helper
         /// </summary>
         /// <param name="filePath">File path to the csv file</param>
         /// <returns>List of string arrays</returns>
+        /// <exception cref="FileNotFoundException">Thrown when the file does not exist</exception>"
         public static List<string[]> ReadCsv(string filePath)
         {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException($"The file '{filePath}' does not exist.");
+            }
             return File.ReadLines(filePath)
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .Select(line => line.Split(','))
@@ -27,13 +32,21 @@ namespace FlaUiTests.Helper
         /// </summary>
         /// <param name="filePath">File path to the csv file</param>
         /// <param name="data">List of string array representing the data</param>
+        /// <exception cref="FileNotFoundException">Thrown when the file does not exist</exception>"
         public static void WriteCsv(string filePath, List<string[]> data)
         {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException($"The file '{filePath}' does not exist.");
+            }
+            string[] header = File.ReadLines(filePath).First().Split(',');
             using (var writer = new StreamWriter(filePath))
             {
-                foreach (var row in data)
+                // Write the header
+                writer.WriteLine(string.Join(",", header));
+                for (int i = 1; i < data.Count; i++)
                 {
-                    writer.WriteLine(string.Join(",", row));
+                    writer.WriteLine(string.Join(",", data[i]));
                 }
             }
         }

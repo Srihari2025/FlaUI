@@ -36,5 +36,16 @@ namespace FlaUiTests
         public Button ButtonClear => _mainWindow.FindFirstDescendant(cf => cf.ByName("Clear")).AsButton();
         public Button ButtonEquals => _mainWindow.FindFirstDescendant(cf => cf.ByName("Equals")).AsButton();
         public Button ButtonDecimal => _mainWindow.FindFirstDescendant(cf => cf.ByName("Decimal separator")).AsButton();
+        public Button ButtonMenu => _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("TogglePaneButton")).AsButton();
+        public string ResultText
+        {
+            get
+            {
+                var resultText = _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("CalculatorResults"));
+                return resultText.Name.Remove(0, 11);
+            }
+        }
+        public AutomationElement MenuItems => _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("MenuItemsScrollViewer"));
+        public AutomationElement CalculatorMode => _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("Header")).AsTextBox();
     }
 }
