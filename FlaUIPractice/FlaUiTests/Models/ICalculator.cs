@@ -1,4 +1,5 @@
 ﻿using FlaUI.Core.AutomationElements;
+using FlaUI.Core.AutomationElements.Infrastructure;
 
 namespace FlaUiTests
 {
@@ -91,5 +92,25 @@ namespace FlaUiTests
         /// Represents the decimal button in calculator.
         /// </summary>
         Button ButtonDecimal { get; }
+
+        /// <summary>
+        /// Represents the Menu button in calculator.
+        /// </summary>
+        Button ButtonMenu { get; }
+
+        /// <summary>
+        /// Represents the Menu items in calculator.
+        /// </summary>
+        AutomationElement MenuItems { get; }
+
+        /// <summary>
+        /// Represents the Calculator mode in calculator.
+        /// </summary>
+        AutomationElement CalculatorMode { get; }
+
+        /// <summary>
+        /// Represents the result text in calculator.
+        /// </summary>
+        string ResultText { get; }
     }
 }
