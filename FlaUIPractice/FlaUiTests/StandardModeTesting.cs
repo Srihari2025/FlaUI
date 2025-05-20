@@ -23,13 +23,9 @@ namespace FlaUiTests
             {
                 _calculatorTester.SwitchCalculatorMode("Standard");
             }
-            catch (NullReferenceException ex)
+            catch (Exception ex)
             {
-                Assert.Fail($"Failed to switch to Standard mode: {ex.Message}");
-            }
-            catch 
-            {
-                Assert.Fail("Failed to launch the calculator application.");
+                Assert.Fail($"Failed to launch the calculator application: {ex.Message}");
             }
         }
 
@@ -41,7 +37,14 @@ namespace FlaUiTests
             Assert.IsNotNull(testCases, "Test cases data is null");
 
             // Act
-            _calculatorTester.PerformTestCases(testCases);
+            try
+            {
+                _calculatorTester.PerformTestCases(testCases);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"An error occurred while performing test cases: {ex.Message}");
+            }
 
             // Assert
             WriteTestCases(testCases);

@@ -10,14 +10,14 @@ namespace FlaUiTests
     /// </summary>
     public class InputFormatter
     {
-        private readonly ICalculator _calculator;
+        private readonly ICalculatorElements _calculator;
         private readonly Dictionary<string, Button> _calculatorButtons;
 
         /// <summary>
         /// Constructor for InputFormatter accepting an ICalculator instance for extracting button data.
         /// </summary>
         /// <param name="calculator">Calculator instance</param>
-        public InputFormatter(ICalculator calculator)
+        public InputFormatter(ICalculatorElements calculator)
         {
             _calculator = calculator;
             _calculatorButtons = new Dictionary<string, Button>
@@ -49,6 +49,7 @@ namespace FlaUiTests
         /// </summary>
         /// <param name="testCase">Test case</param>
         /// <returns>List of buttons</returns>
+        /// <exception cref="ArgumentException">If the operator is not supported</exception>
         public List<Button> ExtractButtons(CalculatorTestCase testCase)
         {
             List<Button> buttons = new List<Button>();

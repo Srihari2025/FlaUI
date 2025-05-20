@@ -6,7 +6,7 @@ namespace FlaUiTests
     /// <summary>
     /// Implementation of the calculator interface for Windows 11 Calculator.
     /// </summary>
-    public class Windows11Calculator : ICalculator
+    public class Windows11CalculatorElements : ICalculatorElements
     {
         private AutomationElement _mainWindow;
 
@@ -14,7 +14,7 @@ namespace FlaUiTests
         /// Constructor for Windows11Calculator accepting the main window element.
         /// </summary>
         /// <param name="mainWindow">Mainwindow element</param>
-        public Windows11Calculator(AutomationElement mainWindow)
+        public Windows11CalculatorElements(AutomationElement mainWindow)
         {
             _mainWindow = mainWindow;
         }
@@ -39,6 +39,7 @@ namespace FlaUiTests
         public Button ButtonMenu => GetButtonByAutomationId("TogglePaneButton");
         public string ResultText
         {
+            //Get only the result number after 'Display is ' in the result text
             get
             {
                 var resultText = _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId("CalculatorResults"));
@@ -51,10 +52,9 @@ namespace FlaUiTests
         {
             return _mainWindow.FindFirstDescendant(cf => cf.ByName(buttonName)).AsButton();
         }
-
         private Button GetButtonByAutomationId(string automationId)
         {
             return _mainWindow.FindFirstDescendant(cf => cf.ByAutomationId(automationId)).AsButton();
-        } 
+        }
     }
 }

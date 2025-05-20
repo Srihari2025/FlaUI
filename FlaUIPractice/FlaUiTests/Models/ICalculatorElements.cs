@@ -6,7 +6,7 @@ namespace FlaUiTests
     /// <summary>
     /// Interface for a calculator application buttons.
     /// </summary>
-    public interface ICalculator
+    public interface ICalculatorElements
     {
         /// <summary>
         /// Represents Number 1 button in calculator.

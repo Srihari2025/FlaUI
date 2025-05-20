@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Documents;
 using FlaUI.Core.AutomationElements;
 using FlaUI.Core.AutomationElements.Infrastructure;
-using FlaUI.Core.AutomationElements.PatternElements;
 using FlaUI.Core.Conditions;
-using FlaUI.Core.Exceptions;
 using FlaUI.UIA3;
+using FlaUiTests.Helper;
 using FlaUiTests.Models;
 
 namespace FlaUiTests
@@ -20,7 +18,12 @@ namespace FlaUiTests
         private UIA3Automation _automation;
         private AutomationElement _mainWindow;
         private ConditionFactory _conditionFactory;
-        private ICalculator _calculator;
+        private ICalculatorElements _calculator;
+        private UIOperations _uiOperations;
+
+        /// <summary>
+        /// Timeout to find the main window of the calculator application.
+        /// </summary>
         public double TimeOutToFindMainWindow { get; set; } = 2; //setting default timeout to 2 seconds
 
         /// <summary>
@@ -32,7 +35,8 @@ namespace FlaUiTests
             _automation = new UIA3Automation();
             _mainWindow = _application.GetMainWindow(_automation, TimeSpan.FromSeconds(TimeOutToFindMainWindow));
             _conditionFactory = new ConditionFactory(new UIA3PropertyLibrary());
-            _calculator = new Windows11Calculator(_mainWindow);
+            _calculator = new Windows11CalculatorElements(_mainWindow);
+            _uiOperations = new UIOperations(_calculator, _conditionFactory);
         }
 
         /// <summary>
@@ -48,46 +52,14 @@ namespace FlaUiTests
                 {
                     throw new NullReferenceException("Menu container not found.");
                 }
-                AutomationElement targetModeItem = GetListItem($"{targetMode} Calculator");
+                AutomationElement targetModeItem = _uiOperations.GetListItem($"{targetMode} Calculator");
 
                 if (targetModeItem == null)
                 {
                     throw new NullReferenceException($"{targetMode} Calculator list item not found.");
                 }
-                SelectListItem(targetModeItem);
+                _uiOperations.SelectListItem(targetModeItem);
             }
-        }
-
-        /// <summary>
-        /// Selects the list item in the calculator menu.
-        /// </summary>
-        /// <param name="targetModeItem">Target Mode Item</param>
-        /// <exception cref="InvalidOperationException">Throws exception if the item is not selectable.</exception>
-        /// <exception cref="ElementNotEnabledException">Throws exception if the item is not enabled.</exception>
-        public void SelectListItem(AutomationElement targetModeItem)
-        {
-            try
-            {
-                targetModeItem.AsListBoxItem().Select();
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw new InvalidOperationException($"Failed to select the list item: {ex.Message}");
-            }
-            catch (ElementNotEnabledException ex)
-            {
-                throw new ElementNotEnabledException($"The list item is not enabled: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Gets the list item from the calculator menu.
-        /// </summary>
-        /// <param name="listItem">List item name</param>
-        /// <returns>Returns listItem Automation element</returns>
-        public AutomationElement GetListItem(string listItem)
-        {
-            return _calculator.MenuItems.FindFirstDescendant(cf => cf.ByControlType(FlaUI.Core.Definitions.ControlType.ListItem).And(_conditionFactory.ByName(listItem)));
         }
 
         /// <summary>
@@ -99,21 +71,22 @@ namespace FlaUiTests
             InputFormatter inputFormatter = new InputFormatter(_calculator);
             foreach (CalculatorTestCase testCase in testCases)
             {
-                List<Button> buttons = inputFormatter.ExtractButtons(testCase);
-                foreach (Button button in buttons)
+                try
                 {
-                    ClickButton(button);
+                    List<Button> buttons = inputFormatter.ExtractButtons(testCase);
+                    foreach (Button button in buttons)
+                    {
+                        _uiOperations.ClickButton(button);
+                    }
+                    var resultText = _calculator.ResultText;
+
+                    testCase.ActualResult = double.Parse(resultText);
                 }
-                var resultText = _calculator.ResultText;
-
-                //Get only the result number after Display is "", convert it into double and store it in the Actual Result column of file.
-                testCase.ActualResult = double.Parse(resultText);
+                catch (Exception ex)
+                {
+                    throw new Exception($"Error while performing test case: {testCase.ToString()}", ex);
+                }
             }
-        }
-
-        public void ClickButton(Button button)
-        {
-            button.Click();
         }
 
         /// <summary>

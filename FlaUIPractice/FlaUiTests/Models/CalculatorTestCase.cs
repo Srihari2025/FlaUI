@@ -7,7 +7,10 @@ namespace FlaUiTests.Models
     /// </summary>
     public class CalculatorTestCase
     {
-        private const int maxDecimalPlaces = 9;
+        private double _expectedResult;
+        private double _actualResult;
+        private const int _maxDecimalPlacesForPrecision = 9;
+
         /// <summary>
         /// Represents the first operand in the calculation.    
         /// </summary>
@@ -23,24 +26,22 @@ namespace FlaUiTests.Models
         /// </summary>
         public string Operator { get; set; }
 
-        private double expectedResult;
         /// <summary>
         /// Represents the expected result of the calculation.
         /// </summary>
         public double ExpectedResult
         {
-            get => expectedResult;
-            set => expectedResult = Math.Round(value, maxDecimalPlaces);
+            get => _expectedResult;
+            set => _expectedResult = Math.Round(value, _maxDecimalPlacesForPrecision);
         }
 
-        private double actualResult;
         /// <summary>
         /// Represents the actual result of the calculation after performing the operation.
         /// </summary>
         public double ActualResult
         {
-            get => actualResult;
-            set => actualResult = Math.Round(value, maxDecimalPlaces);
+            get => _actualResult;
+            set => _actualResult = Math.Round(value, _maxDecimalPlacesForPrecision);
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace FlaUiTests.Models
         {
             get
             {
-                return Math.Abs(ExpectedResult - ActualResult) < Math.Pow(10, -maxDecimalPlaces);
+                return Math.Abs(ExpectedResult - ActualResult) < Math.Pow(10, -_maxDecimalPlacesForPrecision);
             }
         }
 

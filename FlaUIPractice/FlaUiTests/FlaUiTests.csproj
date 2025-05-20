@@ -77,13 +77,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorTester.cs" />
-    <Compile Include="Models\ICalculator.cs" />
-    <Compile Include="InputFormatter.cs" />
+    <Compile Include="Helper\UIOperations.cs" />
+    <Compile Include="Models\ICalculatorElements.cs" />
+    <Compile Include="Helper\InputFormatter.cs" />
     <Compile Include="Models\CalculatorTestCase.cs" />
     <Compile Include="Helper\FileHandler.cs" />
     <Compile Include="StandardModeTesting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Windows11Calculator.cs" />
+    <Compile Include="Models\Windows11CalculatorElements.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
