@@ -3,7 +3,7 @@
 **Overview :**
 - This test library can be used to perform UI testing on the **Standard** mode of Windows Calculator.
 - It supports binary operations using simple arthimetic operators such as Addition, Subtraction, Multiplication and Division.
-- The UI Automations are performed on the Calculator Application using FlaUI.
+- The UI Automations are performed on the Calculator Application using FlaUI. [Know more](https://docs.google.com/document/d/1J81neFboMnpdDmU-KBTnSdujf7LQ52M2/edit?usp=sharing&ouid=111179004960829358587&rtpof=true&sd=true)
 
 **Software Requirements:**
 - Visual Studio 2022
@@ -24,7 +24,7 @@ Step 2 : Open the solution in Visual Studio. <br>
 Step 3 : Build the solution to restore the required packages. <br>
 Step 4 : Run the test cases using the Test Explorer in Visual Studio. <br>
 Step 5 : The tests will open the Calculator application, perform the operations, and validate the results. <br>
-Step 6 : The test results will be displayed in the [TestDataStore](TestDataStore.csv) file. <br>
+Step 6 : The test results will be displayed in the [TestDataSource](FlaUIPractice/FlaUiTests/Resources/TestDataSource.csv) file. <br>
 Step 7 : You can modify the test cases to add more operations or change the input values as needed. <br>
 
 ## Demonstration
@@ -34,6 +34,8 @@ As shown below, the test cases are executed. The Calculator application gets ope
 <p align="center" width="100%">
 	<img height="400" src="https://github.com/user-attachments/assets/f2ffabac-f5a5-4b94-b224-29685bca5983">
 </p>
+
+For extended Demo video - [Click Here](https://drive.google.com/file/d/1_bG3pqpk_VzQFnDZagP0kd8BgiYNDQmh/view?usp=sharing)
 
 ## Test Results
 
@@ -59,13 +61,15 @@ The test results are stored in a CSV file named **TestDataSource.csv**. This fil
 
 **File Descriptions:**
 
-- [File Handler](FileHandler.cs) is used to read and write test case data to a file. It provides methods for reading the test case data from a file and writing the test results to a file. The file used to store the test case data is a Microsoft Excel CSV file, which is easy to read and write. The test case data is stored in a structured format, making it easy to parse and process.
-- [CalculatorTestCase Model](CalculatorTestCase.cs) is a model class that represents a test case for the Calculator application. It contains properties for the input values, expected result, and actual result.
-- [Test Data Source](TestDataSource.csv) is a CSV file that contains the test case data for the Calculator application. It includes the input values, expected results, and operation types for each test case. The CSV file is used as a data source for the test cases, allowing for easy modification and addition of new test cases without changing the code.
-- [ICalculator](ICalculator.cs) is the interface for button implementations. Having an interface allows for easy extensibility and maintainability of the code. As there are multiple implementations of the Calculator application in Windows across different versions, having an interface allows for easy switching between different implementations without changing the code that uses it.
-- [InputFormatter](InputFormatter.cs) is a utility class that formats the input values for the Calculator application. It ensures that the input values are in the correct format for testing by converting the numerics and symbols to the collection of Buttons that are to be clicked.
-- [StandardModeTests](StandardModeTests.cs) contains the test cases for the Standard mode of Windows Calculator.
-- [Windows11Calculator](Windows11Calculator.cs) is a class that implements the ICalculator interface having definition for the buttons of Calculator.
+- [File Handler](FlaUIPractice/FlaUiTests/Helper/FileHandler.cs) is used to read and write test case data to a file. It provides methods for reading the test case data from a file and writing the test results to a file. The file used to store the test case data is a Microsoft Excel CSV file, which is easy to read and write. The test case data is stored in a structured format, making it easy to parse and process.
+- [CalculatorTestCase Model](FlaUIPractice/FlaUiTests/Models/CalculatorTestCase.cs) is a model class that represents a test case for the Calculator application. It contains properties for the input values, expected result, and actual result.
+- [Test Data Source](FlaUIPractice/FlaUiTests/Resources/TestDataSource.csv) is a CSV file that contains the test case data for the Calculator application. It includes the input values, expected results, and operation types for each test case. The CSV file is used as a data source for the test cases, allowing for easy modification and addition of new test cases without changing the code.
+- [ICalculator](FlaUIPractice/FlaUiTests/ICalculator.cs) is the interface for button implementations. Having an interface allows for easy extensibility and maintainability of the code. As there are multiple implementations of the Calculator application in Windows across different versions, having an interface allows for easy switching between different implementations without changing the code that uses it.
+- [InputFormatter](FlaUIPractice/FlaUiTests/InputFormatter.cs) is a utility class that formats the input values for the Calculator application. It ensures that the input values are in the correct format for testing by converting the numerics and symbols to the collection of Buttons that are to be clicked.
+- [StandardModeTests](FlaUIPractice/FlaUiTests/StandardModeTesting.cs) contains the test cases for the Standard mode of Windows Calculator.
+- [Windows11Calculator](FlaUIPractice/FlaUiTests/Windows11Calculator.cs) is a class that implements the ICalculator interface having definition for the buttons of Calculator.
 
 ## References
 [FlaUI GitHub Repo](https://github.com/FlaUI/FlaUI)
+
+[Self Made Notes](https://docs.google.com/document/d/1J81neFboMnpdDmU-KBTnSdujf7LQ52M2/edit?usp=sharing&ouid=111179004960829358587&rtpof=true&sd=true)
