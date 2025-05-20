@@ -1,4 +1,5 @@
 Operand1,Operand2,Operator,ExpectedResult,Actual Result,Test Result
+1,2,ADD,3,3,Pass
 3,2,SUB,1,1,Pass
 2,5,MUL,10,10,Pass
 107,14,DIV,7.642857143,7.642857143,Pass

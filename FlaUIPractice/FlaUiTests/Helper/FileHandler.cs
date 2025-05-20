@@ -44,7 +44,7 @@ namespace FlaUiTests.Helper
             {
                 // Write the header
                 writer.WriteLine(string.Join(",", header));
-                for (int i = 1; i < data.Count; i++)
+                for (int i = 0; i < data.Count; i++)
                 {
                     writer.WriteLine(string.Join(",", data[i]));
                 }
